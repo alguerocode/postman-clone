@@ -59,6 +59,6 @@ module.exports = merge(webpackBase, {
     }),
   ],
   performance: {
-    hints: true,
+    hints: false,
   }
 });
