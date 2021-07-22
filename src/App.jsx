@@ -22,7 +22,7 @@ const App = () => {
             <History />
           </div>
           <div className="col">
-            <div className="d-flex flex-column">
+            <div className="d-flex flex-column justify-content-between align-items-start">
               <RequestTable />
               <ResponseTable />
             </div>
