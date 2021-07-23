@@ -21,14 +21,20 @@ const App = () => {
     setMethod("GET");
     setUrl("http://localhost:PORT");
   }, []);
-  const clearResponseTable = () =>{
+
+  const clearResponseTable = () => {
     setResponseData("");
     setResponseHeaders("");
     setResponseCookie("");
-  } 
-  const sendHanlder = () => { // todo 
-    // todo
-  }; 
+  };
+
+  const sendHandler = () => {
+    console.log({ url, method, headers, body });
+    const id = Math.random();
+    
+    setHistory([...history, { id: id.toString(), url, method, headers, body }]);
+
+  };
   return (
     <React.Fragment>
       <NavBar />
@@ -37,11 +43,11 @@ const App = () => {
           <div className="col-4">
             <History
               history={history}
-              setHistory={setHistory}
               setMethod={setMethod}
               setHeaders={setHeaders}
               setUrl={setUrl}
               setBody={setBody}
+              clearResponseTable={clearResponseTable}
             />
           </div>
           <div className="col">
@@ -52,14 +58,14 @@ const App = () => {
                 method={method}
                 setMethod={setMethod}
                 setHeaders={setHeaders}
-                clearResponseTable={clearResponseTable}
+
               />
               <RequestTable
                 body={body}
                 setBody={setBody}
                 headers={headers}
                 setHeaders={setHeaders}
-                sendHanlder={sendHanlder}
+                sendHandler={sendHandler}
               />
               <ResponseTable
                 responseData={responseData}
