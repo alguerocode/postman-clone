@@ -1,6 +1,7 @@
 import React from "react";
 
 const ResponseTable = ({responseCookie, responseHeaders, responseData}) => {
+  
  return (
    <React.Fragment>
      <div className="mb-3">

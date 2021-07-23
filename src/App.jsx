@@ -1,16 +1,19 @@
 import React, { useEffect, useState } from "react";
-import { History, ResponseTable, RequestTable, NavBar } from "./all-components";
+import { History, ResponseTable, RequestTable, NavBar, UrlInput } from "./all-components";
 
 const App = () => {
+  const [url, setUrl] = useState("");
+  const [method, setMethod] = useState("");
   const [body, setBody] = useState("");
   const [headers, setHeaders] = useState("");
   const [responseData, setResponseData] = useState("");
   const [responseHeaders, setResponseHeaders] = useState("");
   const [responseCookie, setResponseCookie] = useState("");
   const [history, setHistory] = useState([]);
-  
-  useEffect(()=>{
 
+  useEffect(()=>{
+    setMethod("GET");
+    setUrl("http://localhost:PORT");
   },[])
   const sendHanlder = () => {};
   return (
@@ -24,6 +27,7 @@ const App = () => {
           </div>
           <div className="col">
             <div className="d-flex flex-column justify-content-between align-items-center">
+              <UrlInput/>
               <RequestTable
                 body={body}
                 setBody={setBody}
