@@ -20,7 +20,7 @@ const App = () => {
             <History history={history} setHistory={setHistory} />
           </div>
           <div className="col">
-            <div className="d-flex flex-column justify-content-between align-items-start">
+            <div className="d-flex flex-column justify-content-between align-items-center">
               <RequestTable
                 body={body}
                 setBody={setBody}
@@ -30,11 +30,8 @@ const App = () => {
               />
               <ResponseTable
                 responseData={responseData}
-                setResponseData={setResponseData}
                 responseCookie={responseCookie}
-                setResponseCookie={setResponseCookie}
                 responseHeaders={responseHeaders}
-                setResponseHeaders={setResponseHeaders}
               />
             </div>
           </div>
