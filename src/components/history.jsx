@@ -9,7 +9,19 @@ const History = ({
   setBody,
   clearResponseTable,
 }) => {
-  clickHistoryItemHandler = () => {};
+  const clickHistoryItemHandler = (e) => {
+    const itemId = e.currentTarget.id 
+    const requestItemConfig = history[history.indexOf((items)=>items.id === parseInt(itemId))];
+    
+    // set the data that exist in request item configuartion
+    setMethod(requestItemConfig.method);
+    setHeaders(requestItemConfig.headers);
+    setUrl(requestItemConfig.url);
+    setBody(requestItemConfig.body);
+
+
+    clearResponseTable(); // clear the data of response table 
+  };
 
   return (
     <React.Fragment>
@@ -20,7 +32,7 @@ const History = ({
         {!history.length ? (
           <div className="text-center">No history items available</div>
         ) : (
-          history.map((request) => (
+          history.map(request => (
             <li
               key={request.id}
               id={request.id}
