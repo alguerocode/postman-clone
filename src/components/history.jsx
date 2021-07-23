@@ -9,8 +9,8 @@ const History = ({
   setBody,
   clearResponseTable,
 }) => {
-  clickHistoryItemHandler = () =>{};
-  
+  clickHistoryItemHandler = () => {};
+
   return (
     <React.Fragment>
       <ul className="list-group ms-5">
@@ -21,9 +21,16 @@ const History = ({
           <div className="text-center">No history items available</div>
         ) : (
           history.map((request) => (
-            <li className="list-group-item d-flex justify-content-between align-items-center pe-2">
+            <li
+              key={request.id}
+              id={request.id}
+              className="list-group-item d-flex justify-content-between align-items-center pe-2"
+              onClick={clickHistoryItemHandler}
+            >
               {request.url}
-              <span className="badge bg-primary rounded-pill">{request.method}</span>
+              <span className="badge bg-primary rounded-pill">
+                {request.method}
+              </span>
             </li>
           ))
         )}
@@ -32,9 +39,10 @@ const History = ({
   );
 };
 {
+  // history item element 
   /* <li className="list-group-item d-flex justify-content-between align-items-center pe-2">
           http://localhost:3000/add
           <span className="badge bg-primary rounded-pill">post</span>
-        </li> */
+      </li> */
 }
 export default History;
