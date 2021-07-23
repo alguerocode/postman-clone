@@ -1,9 +1,6 @@
 import React,{useState} from "react";
 
 const ResponseTable = () => {
-  const [body, setBody] = useState("");
-  const [headers, setHeaders] = useState("");
-
  return (
    <React.Fragment>
      <div className="mb-3">

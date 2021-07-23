@@ -1,9 +1,19 @@
-import React from "react";
+import React, { useState } from "react";
 import { History, ResponseTable, RequestTable,NavBar } from "./all-components";
 
 
 
 const App = () => {
+  const [body,setBody] = useState("");
+  const [headers, setHeaders] = useState("");
+  const [ResponseData, setResponseData] = useState("");
+  const [ResponseHeaders, setResponseHeaders] = useState("");
+  const [ResponseCookie, setResponseCookie] = useState("");
+  const [History, setHistory] = useState([]);
+  
+  const sendHanlder = () =>{
+
+  }
   return (
     <React.Fragment>
       {/* navbar */}
