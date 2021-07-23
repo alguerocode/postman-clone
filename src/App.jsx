@@ -27,7 +27,7 @@ const App = () => {
           </div>
           <div className="col">
             <div className="d-flex flex-column justify-content-between align-items-center">
-              <UrlInput/>
+              <UrlInput url={url} setUrl={setUrl} method={method} setMethod={setMethod}/>
               <RequestTable
                 body={body}
                 setBody={setBody}
