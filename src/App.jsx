@@ -1,30 +1,71 @@
-import React from "react";
-import brand from "../public/brand.png";
-import { History, ResponseTable, RequestTable } from "./all-components";
+import React, { useEffect, useState } from "react";
+import {
+  History,
+  ResponseTable,
+  RequestTable,
+  NavBar,
+  UrlInput,
+} from "./all-components";
+
 const App = () => {
+  const [url, setUrl] = useState("");
+  const [method, setMethod] = useState("");
+  const [body, setBody] = useState("");
+  const [headers, setHeaders] = useState("");
+  const [responseData, setResponseData] = useState("");
+  const [responseHeaders, setResponseHeaders] = useState("");
+  const [responseCookie, setResponseCookie] = useState("");
+  const [history, setHistory] = useState([]);
+
+  useEffect(() => {
+    setMethod("GET");
+    setUrl("http://localhost:PORT");
+  }, []);
+  const clearResponseTable = () =>{
+    setResponseData("");
+    setResponseHeaders("");
+    setResponseCookie("");
+  } 
+  const sendHanlder = () => { // todo 
+    // todo
+  }; 
   return (
     <React.Fragment>
-      <nav className="navbar navbar-expand-lg navbar-light">
-        <div className="container-fluid">
-          <a className="navbar-brand" href="#">
-            <img
-              className="img-fuild"
-              width="200"
-              src={brand}
-              alt="postman logo"
-            />
-          </a>
-        </div>
-      </nav>
+      <NavBar />
       <div className="container-lx">
         <div className="row justify-content-center g-5">
           <div className="col-4">
-            <History />
+            <History
+              history={history}
+              setHistory={setHistory}
+              setMethod={setMethod}
+              setHeaders={setHeaders}
+              setUrl={setUrl}
+              setBody={setBody}
+            />
           </div>
           <div className="col">
-            <div className="d-flex flex-column justify-content-between align-items-start">
-              <RequestTable />
-              <ResponseTable />
+            <div className="d-flex flex-column justify-content-between align-items-center">
+              <UrlInput
+                url={url}
+                setUrl={setUrl}
+                method={method}
+                setMethod={setMethod}
+                setHeaders={setHeaders}
+                clearResponseTable={clearResponseTable}
+              />
+              <RequestTable
+                body={body}
+                setBody={setBody}
+                headers={headers}
+                setHeaders={setHeaders}
+                sendHanlder={sendHanlder}
+              />
+              <ResponseTable
+                responseData={responseData}
+                responseCookie={responseCookie}
+                responseHeaders={responseHeaders}
+              />
             </div>
           </div>
         </div>

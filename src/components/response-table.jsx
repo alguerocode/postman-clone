@@ -1,63 +1,55 @@
-import React,{useState} from "react";
+import React from "react";
 
-const ResponseTable = () => {
-  const [body, setBody] = useState("");
-  const [headers, setHeaders] = useState("");
-
+const ResponseTable = ({responseCookie, responseHeaders, responseData}) => {
+  
  return (
    <React.Fragment>
      <div className="mb-3">
        <ul className="nav nav-pills mb-3 justify-content-center" id="pills-tab" role="tablist">
          <li className="nav-item" role="presentation">
-           <button className="nav-link active" id="pills-body-tab" data-bs-toggle="pill" data-bs-target="#pills-body" type="button" role="tab" aria-controls="pills-body" aria-selected="true">
-             Body
+           <button className="nav-link active" id="pills-data-tab" data-bs-toggle="pill" data-bs-target="#pills-data" type="button" role="tab" aria-controls="pills-data" aria-selected="true">
+             Data
            </button>
          </li>
          <li className="nav-item" role="presentation">
-           <button className="nav-link" id="pills-headers-tab" data-bs-toggle="pill" data-bs-target="#pills-headers" type="button" role="tab" aria-controls="pills-headers" aria-selected="false">
+           <button className="nav-link" id="pills-resheaders-tab" data-bs-toggle="pill" data-bs-target="#pills-resheaders" type="button" role="tab" aria-controls="pills-resheaders" aria-selected="false">
              Headers
            </button>
          </li>
-         <li className="nav-item align-self-end ms-1">
-           <button className="btn btn-outline-warning">
-             Send
+         <li className="nav-item" role="presentation">
+           <button className="nav-link" id="pills-cookie-tab" data-bs-toggle="pill" data-bs-target="#pills-cookie" type="button" role="tab" aria-controls="pills-cookie" aria-selected="false">
+             Cookies
            </button>
          </li>
        </ul>
        <div className="tab-content" id="pills-tabContent">
-         <div
+        <div
            className="tab-pane fade show active"
-           id="pills-body"
+           id="pills-data"
            role="tabpanel"
-           aria-labelledby="pills-body-tab"
-         >
-             <textarea 
-             name="body"
-             className="bg-light border border-1 rounded"
-             id="body"
-             value={body} 
-             cols="70" 
-             rows="10" 
-             onChange={(e)=>setBody(e.target.value)}>
-                 {body}
-             </textarea>
+           aria-labelledby="pills-data-tab">
+         <div className="data-content bg-light border border-1 rounded" style={{
+            width:"523px",
+            height:"246px"
+          }}>
+            {responseData}
          </div>
-         <div
-           className="tab-pane fade"
-           id="pills-headers"
-           role="tabpanel"
-           aria-labelledby="pills-headers-tab"
-         >
-            <textarea 
-            name="headers" 
-            className="bg-light border border-1 rounded"
-            value={headers} 
-            id="headers" 
-            cols="70" 
-            rows="10" 
-            onChange={(e)=>setHeaders(e.target.value)}>
-                 {headers}
-             </textarea>
+         </div>
+         <div className="tab-pane fade" id="pills-resheaders" role="tabpanel" aria-labelledby="pills-resheaders-tab">
+          <div className="resheader-content bg-light border border-1 rounded" style={{
+            width:"523px",
+            height:"246px"
+          }}>
+            {responseHeaders}
+          </div>
+         </div>
+         <div className="tab-pane fade" id="pills-cookie" role="tabpanel" aria-labelledby="pills-cookie-tab">
+          <div className="cookie-content bg-light border border-1 rounded" style={{
+            width:"523px",
+            height:"246px"
+          }}>
+            {responseCookie}
+          </div>
          </div>
        </div>
      </div> 
