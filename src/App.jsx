@@ -28,12 +28,32 @@ const App = () => {
     setResponseCookie("");
   };
 
-  const sendHandler = () => {
-    console.log({ url, method, headers, body });
-    const id = Math.random();
-    
-    setHistory([...history, { id: id.toString(), url, method, headers, body }]);
+  const sendHandler = async () => {
+    try {
+      console.log({ url, method, headers, body });
 
+      const id = Math.random();
+      setHistory([
+        ...history,
+        { id: id.toString(), url, method, headers, body },
+      ]);
+      // const parsedHeaders  =JSON.parse(headers)
+      const requestInfo = {
+        url,
+        method,
+        headers: { "Content-Type": "application/json"},//..praesHeaders
+      };
+      
+      if (method !== "GET") {
+        requestInfo.body = JSON.stringify(body);
+      }
+
+      // const res = await fetch("https://jsonplaceholder.typicode.com/posts/1");
+      // const data = await res.json();
+      // console.log(res.ok);
+    } catch (error) {
+      console.error(error);
+    }
   };
   return (
     <React.Fragment>
@@ -58,7 +78,6 @@ const App = () => {
                 method={method}
                 setMethod={setMethod}
                 setHeaders={setHeaders}
-
               />
               <RequestTable
                 body={body}

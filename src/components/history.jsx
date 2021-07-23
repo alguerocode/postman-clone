@@ -35,10 +35,10 @@ const History = ({
             <li
               key={requestItem.id}
               id={requestItem.id}
-              className="list-group-item d-flex justify-content-between align-items-center pe-2 border-1 border-warning border-top-0"
+              className="list-group-item d-flex btn justify-content-between align-items-center pe-2 border-1 border-warning border-top-0"
               onClick={clickHistoryItemHandler}
             >
-              <button className="btn p-0">{requestItem.url}</button>
+              {requestItem.url}
               <span className="badge bg-primary rounded-pill">
                 {requestItem.method}
               </span>
