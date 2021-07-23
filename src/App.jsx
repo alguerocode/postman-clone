@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { History, ResponseTable, RequestTable, NavBar } from "./all-components";
 
 const App = () => {
@@ -8,7 +8,9 @@ const App = () => {
   const [responseHeaders, setResponseHeaders] = useState("");
   const [responseCookie, setResponseCookie] = useState("");
   const [history, setHistory] = useState([]);
-
+  useEffect(()=>{
+    setResponseHeaders("{welcome:hello}")
+  },[])
   const sendHanlder = () => {};
   return (
     <React.Fragment>

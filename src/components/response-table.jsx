@@ -11,7 +11,7 @@ const ResponseTable = ({responseCookie, responseHeaders, responseData}) => {
            </button>
          </li>
          <li className="nav-item" role="presentation">
-           <button className="nav-link" id="pills-headers-tab" data-bs-toggle="pill" data-bs-target="#pills-headers" type="button" role="tab" aria-controls="pills-headers" aria-selected="false">
+           <button className="nav-link" id="pills-resheaders-tab" data-bs-toggle="pill" data-bs-target="#pills-resheaders" type="button" role="tab" aria-controls="pills-resheaders" aria-selected="false">
              Headers
            </button>
          </li>
@@ -21,14 +21,13 @@ const ResponseTable = ({responseCookie, responseHeaders, responseData}) => {
            className="tab-pane fade show active"
            id="pills-data"
            role="tabpanel"
-           aria-labelledby="pills-data-tab"
-         >
+           aria-labelledby="pills-data-tab">
          <div className="data-content bg-light border border-1 rounded">
             {responseData}
          </div>
          </div>
-         <div className="tab-pane fade" id="pills-headers" role="tabpanel" aria-labelledby="pills-headers-tab">
-          <div className="header-content bg-light border border-1 rounded">
+         <div className="tab-pane fade" id="pills-resheaders" role="tabpanel" aria-labelledby="pills-resheaders-tab">
+          <div className="resheader-content bg-light border border-1 rounded">
             {responseHeaders}
           </div>
          </div>
