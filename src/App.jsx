@@ -1,5 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { History, ResponseTable, RequestTable, NavBar, UrlInput } from "./all-components";
+import {
+  History,
+  ResponseTable,
+  RequestTable,
+  NavBar,
+  UrlInput,
+} from "./all-components";
 
 const App = () => {
   const [url, setUrl] = useState("");
@@ -11,23 +17,43 @@ const App = () => {
   const [responseCookie, setResponseCookie] = useState("");
   const [history, setHistory] = useState([]);
 
-  useEffect(()=>{
+  useEffect(() => {
     setMethod("GET");
     setUrl("http://localhost:PORT");
-  },[])
-  const sendHanlder = () => {};
+  }, []);
+  const clearResponseTable = () =>{
+    setResponseData("");
+    setResponseHeaders("");
+    setResponseCookie("");
+  } 
+  const sendHanlder = () => { // todo 
+    // todo
+  }; 
   return (
     <React.Fragment>
-      {/* navbar */}
       <NavBar />
       <div className="container-lx">
         <div className="row justify-content-center g-5">
           <div className="col-4">
-            <History history={history} setHistory={setHistory} />
+            <History
+              history={history}
+              setHistory={setHistory}
+              setMethod={setMethod}
+              setHeaders={setHeaders}
+              setUrl={setUrl}
+              setBody={setBody}
+            />
           </div>
           <div className="col">
             <div className="d-flex flex-column justify-content-between align-items-center">
-              <UrlInput url={url} setUrl={setUrl} method={method} setMethod={setMethod}/>
+              <UrlInput
+                url={url}
+                setUrl={setUrl}
+                method={method}
+                setMethod={setMethod}
+                setHeaders={setHeaders}
+                clearResponseTable={clearResponseTable}
+              />
               <RequestTable
                 body={body}
                 setBody={setBody}
