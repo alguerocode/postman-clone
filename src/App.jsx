@@ -52,10 +52,10 @@ const App = () => {
       }
       console.log(requestInfo);
       const res = await fetch(requestInfo);
-      // const data = await res.json();
+      const data = await res.json("<foo>");
 
       // set the response table
-      console.log(res);
+      console.log(data);
 
     } catch (error) {
       console.error(error);
