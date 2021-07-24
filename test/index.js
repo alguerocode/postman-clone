@@ -19,20 +19,24 @@ app.listen(PORT, (err) => {
 
 app.get("/", (req, res) => {
   console.log(req);
+  res.setHeader("Content-Type", "application/json");
   res.status(200).json({ name: "myName", age: 30 });
 });
 
 app.post("/", (req, res) => {
   console.log(req);
+  res.setHeader("Content-Type", "application/json");
   res.status(300).json({ redirect: true });
 });
 
 app.delete("/", (req, res) => {
   console.log(req);
+  res.setHeader("Content-Type", "application/json");
   res.status(404).json("not allowed");
 });
 
 app.put("/", (req, res) => {
   console.log(req);
+  res.setHeader("Content-Type", "application/json");
   res.status(200).send({ message: "your welcome" });
 });

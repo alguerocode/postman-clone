@@ -35,24 +35,18 @@ const App = () => {
       const id = Math.random();
       setHistory([
         ...history,
-        { id: id.toString(), url, method, headers, body },
+        { id: id.toString(), url, method, headers, body},
       ]);
 
       // create fetch request info
-      const requestInfo ={
-        url, method
-      }
+      const requestInfo ={ method };
 
-      if(!!headers.trim()) {
-        const parsedHeaders = JSON.parse(headers)
-        requestInfo.headers = parsedHeaders;
-      }
-      if (method != "GET") {
-        requestInfo.body = body;
-      }
+      if(!!headers.trim()) requestInfo.headers = JSON.parse(headers);
+      if (method != "GET") requestInfo.body = body;
+    
       console.log(requestInfo);
-      const res = await fetch(requestInfo);
-      const data = await res.json("<foo>");
+      const res = await fetch(url,requestInfo);
+      const data = await res.json();
 
       // set the response table
       console.log(data);
