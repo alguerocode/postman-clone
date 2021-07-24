@@ -1,5 +1,5 @@
 # postman-clone
-clone postman using reactjs and bootstrap
+clone postman using reactjs and bootstrap and only json data transformations
 
 
 <p align="center">
