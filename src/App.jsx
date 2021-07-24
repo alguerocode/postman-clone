@@ -37,21 +37,26 @@ const App = () => {
         ...history,
         { id: id.toString(), url, method, headers, body },
       ]);
-      // const parsedHeaders  =JSON.parse(headers)
-      const requestInfo = {
-        url,
-        method,
-        headers: { "Content-Type": "application/json"},//..praesHeaders
-      };
-      
-      if (method !== "GET") {
-        requestInfo.body = body;
+
+      // create fetch request info
+      const requestInfo ={
+        url, method
       }
 
-      const res = await fetch(url);
-      const data = await res.json();
-      console.log(res.ok);
-      console.log(data);
+      if(!!headers.trim()) {
+        const parsedHeaders = JSON.parse(headers)
+        requestInfo.headers = parsedHeaders;
+      }
+      if (method != "GET") {
+        requestInfo.body = body;
+      }
+      console.log(requestInfo);
+      const res = await fetch(requestInfo);
+      // const data = await res.json();
+
+      // set the response table
+      console.log(res);
+
     } catch (error) {
       console.error(error);
     }
