@@ -24,7 +24,7 @@ app.get("/", (req, res) => {
 });
 
 app.post("/", (req, res) => {
-  console.log(req);
+  console.log(req.body);
   res.setHeader("Content-Type", "application/json");
   res.status(300).json({ redirect: true });
 });
@@ -37,6 +37,7 @@ app.delete("/", (req, res) => {
 
 app.put("/", (req, res) => {
   console.log(req);
+  res.cookie("test","application");
   res.setHeader("Content-Type", "application/json");
   res.status(200).send({ message: "your welcome" });
 });

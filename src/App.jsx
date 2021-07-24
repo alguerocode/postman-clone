@@ -12,10 +12,11 @@ const App = () => {
   const [method, setMethod] = useState("");
   const [body, setBody] = useState("");
   const [headers, setHeaders] = useState("");
+  const [history, setHistory] = useState([]);
   const [responseData, setResponseData] = useState("");
   const [responseHeaders, setResponseHeaders] = useState("");
   const [responseCookie, setResponseCookie] = useState("");
-  const [history, setHistory] = useState([]);
+  const [responseStatus, setResponseStatus] = useState("");
 
   useEffect(() => {
     setMethod("GET");
@@ -47,12 +48,17 @@ const App = () => {
       console.log(requestInfo);
       const res = await fetch(url,requestInfo);
       const data = await res.json();
-
       // set the response table
       console.log(data);
 
+      if(data) setResponseData(JSON.stringify(data));
+      if(document.cookie) setResponseCookie(document.cookie);
+
+      setResponseHeaders(JSON.stringify(res.headers));
+      setResponseStatus(res.status);
+
     } catch (error) {
-      console.error(error);
+      console.error(error); // add toest functionality
     }
   };
   return (
