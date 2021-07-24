@@ -45,12 +45,13 @@ const App = () => {
       };
       
       if (method !== "GET") {
-        requestInfo.body = JSON.stringify(body);
+        requestInfo.body = body;
       }
 
-      // const res = await fetch("https://jsonplaceholder.typicode.com/posts/1");
-      // const data = await res.json();
-      // console.log(res.ok);
+      const res = await fetch(url);
+      const data = await res.json();
+      console.log(res.ok);
+      console.log(data);
     } catch (error) {
       console.error(error);
     }
