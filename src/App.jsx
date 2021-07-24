@@ -48,6 +48,7 @@ const App = () => {
       console.log(requestInfo);
       const res = await fetch(url,requestInfo);
       const data = await res.json();
+      
       // set the response table
       console.log(data);
 

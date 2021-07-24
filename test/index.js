@@ -36,7 +36,7 @@ app.delete("/", (req, res) => {
 });
 
 app.put("/", (req, res) => {
-  console.log(req);
+  console.log(req.body);
   res.cookie("test","application");
   res.setHeader("Content-Type", "application/json");
   res.status(200).send({ message: "your welcome" });
