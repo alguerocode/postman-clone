@@ -10,8 +10,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended:true }))
 
 // lestening 
-
-app.listen(3000);
+const PORT = 3000;
+app.listen(PORT);
 
 // basic test 
 app.get("/", (req,res) =>{
@@ -36,20 +36,24 @@ app.put("/", (req,res) =>{
 // basic test with data sending
 
 app.get("/test", (req,res) =>{
+    console.log(req.body);
     res.status(200).json({name:"myName",age:30})
 })
 
 
 app.post("/test", (req,res) =>{
+    console.log(req.body);
     res.status(300).json({redirect:true});
 })
 
 
 app.delete("/test", (req,res) =>{
+    console.log(req.body);
     res.status(404).json("not allowed");
 })
 
 app.put("/test", (req,res) =>{
+    console.log(req.body);
     res.status(200).send({message:"your welcome"});
 })
 
