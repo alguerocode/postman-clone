@@ -35,22 +35,22 @@ const App = () => {
       const id = Math.random();
       setHistory([
         ...history,
-        { id: id.toString(), url, method, headers, body },
+        { id: id.toString(), url, method, headers, body},
       ]);
-      // const parsedHeaders  =JSON.parse(headers)
-      const requestInfo = {
-        url,
-        method,
-        headers: { "Content-Type": "application/json"},//..praesHeaders
-      };
-      
-      if (method !== "GET") {
-        requestInfo.body = JSON.stringify(body);
-      }
 
-      // const res = await fetch("https://jsonplaceholder.typicode.com/posts/1");
-      // const data = await res.json();
-      // console.log(res.ok);
+      // create fetch request info
+      const requestInfo ={ method };
+
+      if(!!headers.trim()) requestInfo.headers = JSON.parse(headers);
+      if (method != "GET") requestInfo.body = body;
+    
+      console.log(requestInfo);
+      const res = await fetch(url,requestInfo);
+      const data = await res.json();
+
+      // set the response table
+      console.log(data);
+
     } catch (error) {
       console.error(error);
     }
