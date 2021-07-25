@@ -21,7 +21,7 @@ const App = () => {
   useEffect(() => {
     setMethod("GET");
     setUrl("http://localhost:PORT");
-    setHeaders("{\n\n}");
+    setHeaders(`{\n"Access-Control-Allow-Origin":"*",\n'Content-Type','application/json'\n}`);
     setBody("{\n\n}");
   }, []);
 
@@ -41,15 +41,12 @@ const App = () => {
       // headers operation
 
       const parsedHeaders = new Headers(JSON.parse(headers));
-      // Object.entries()
-      // header.append("Access-Control-Allow-Origin","*");
-      // header.append('Content-Type','application/json');
-      // 
+
       const res = await fetch(url, {
-        headers:parsedHeaders,
+        headers: parsedHeaders,
         body: method != "GET" ? body : undefined,
         method: method,
-        credentials: "include"
+        credentials: "include",
       });
       const data = await res.json();
 
