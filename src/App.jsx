@@ -31,33 +31,33 @@ const App = () => {
 
   const sendHandler = async () => {
     try {
-      console.log({ url, method, headers, body });
-
       const id = Math.random();
       setHistory([
         ...history,
-        { id: id.toString(), url, method, headers, body},
+        { id: id.toString(), url, method, headers, body },
       ]);
-
-      // create fetch request info
-      const requestInfo ={ method };
-
-      if(!!headers.trim()) requestInfo.headers = JSON.parse(headers);
-      if (method != "GET") requestInfo.body = body;
-    
-      console.log(requestInfo);
-      const res = await fetch(url,requestInfo);
+      // test
+      const header = new Headers();
+      header.append("Access-Control-Allow-Origin","*");
+      header.append('Content-Type','application/json');
+      // 
+      const res = await fetch(url, {
+        // headers: !!headers.trim() ? JSON.parse(headers) : undefined,
+        headers:header,
+        body: method != "GET" ? body : undefined,
+        method: method,
+        credentials: "include"
+      });
       const data = await res.json();
-      
+
       // set the response table
       console.log(data);
 
-      if(data) setResponseData(JSON.stringify(data));
-      if(document.cookie) setResponseCookie(document.cookie);
+      if (data) setResponseData(JSON.stringify(data));
+      if (document.cookie) setResponseCookie(document.cookie);
 
       setResponseHeaders(JSON.stringify(res.headers));
       setResponseStatus(res.status);
-
     } catch (error) {
       console.error(error); // add toest functionality
     }

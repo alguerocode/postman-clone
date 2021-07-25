@@ -4,9 +4,12 @@ const cors = require("cors");
 const app = express();
 
 // middlewares
-app.use(cors());
+app.use(cors({
+  credentials:true,
+  origin:"http://localhost:5000"
+}));
 app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: false }));
 
 // lestening
 const PORT = 3000;
@@ -18,7 +21,6 @@ app.listen(PORT, (err) => {
 // basic with data sending
 
 app.get("/", (req, res) => {
-  console.log(req);
   res.setHeader("Content-Type", "application/json");
   res.status(200).json({ name: "myName", age: 30 });
 });
@@ -30,14 +32,15 @@ app.post("/", (req, res) => {
 });
 
 app.delete("/", (req, res) => {
-  console.log(req);
   res.setHeader("Content-Type", "application/json");
   res.status(404).json("not allowed");
 });
 
 app.put("/", (req, res) => {
   console.log(req.body);
-  res.cookie("test","application");
+  res.cookie("test","application",{
+    domain:"http://localhost:5000",
+  });
   res.setHeader("Content-Type", "application/json");
   res.status(200).send({ message: "your welcome" });
 });
