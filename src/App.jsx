@@ -21,7 +21,7 @@ const App = () => {
   useEffect(() => {
     setMethod("GET");
     setUrl("http://localhost:PORT");
-    setHeaders(`{\n"Access-Control-Allow-Origin":"*",\n'Content-Type','application/json'\n}`);
+    setHeaders(`{\n"Access-Control-Allow-Origin":"*",\n"Content-Type":"application/json"\n}`);
     setBody("{\n\n}");
   }, []);
 
@@ -38,8 +38,8 @@ const App = () => {
         ...history,
         { id: id.toString(), url, method, headers, body },
       ]);
-      // headers operation
 
+      // headers operation
       const parsedHeaders = new Headers(JSON.parse(headers));
 
       const res = await fetch(url, {
