@@ -21,6 +21,8 @@ const App = () => {
   useEffect(() => {
     setMethod("GET");
     setUrl("http://localhost:PORT");
+    setHeaders("{\n\n}");
+    setBody("{\n\n}");
   }, []);
 
   const clearResponseTable = () => {
@@ -36,14 +38,15 @@ const App = () => {
         ...history,
         { id: id.toString(), url, method, headers, body },
       ]);
-      // test
-      const header = new Headers();
-      header.append("Access-Control-Allow-Origin","*");
-      header.append('Content-Type','application/json');
+      // headers operation
+
+      const parsedHeaders = new Headers(JSON.parse(headers));
+      // Object.entries()
+      // header.append("Access-Control-Allow-Origin","*");
+      // header.append('Content-Type','application/json');
       // 
       const res = await fetch(url, {
-        // headers: !!headers.trim() ? JSON.parse(headers) : undefined,
-        headers:header,
+        headers:parsedHeaders,
         body: method != "GET" ? body : undefined,
         method: method,
         credentials: "include"
