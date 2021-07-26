@@ -1,5 +1,5 @@
 import React from "react";
-
+import JSONPretty from 'react-json-pretty';
 
 
 const ResponseTable = ({responseCookie, responseHeaders, responseData}) => {
@@ -34,7 +34,7 @@ const ResponseTable = ({responseCookie, responseHeaders, responseData}) => {
             width:"523px",
             height:"246px"
           }}>
-            {responseData}
+            <JSONPretty data={responseData} mainStyle="background:#f8f9fa"/>
          </div>
          </div>
          <div className="tab-pane fade" id="pills-resheaders" role="tabpanel" aria-labelledby="pills-resheaders-tab">
