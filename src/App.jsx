@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import {toast} from 'react-toastify';
 import {
   History,
   ResponseTable,
@@ -6,6 +7,8 @@ import {
   NavBar,
   UrlInput,
 } from "./all-components";
+
+toast.configure();
 
 const App = () => {
   const [url, setUrl] = useState("");
@@ -16,11 +19,11 @@ const App = () => {
   const [responseData, setResponseData] = useState("");
   const [responseHeaders, setResponseHeaders] = useState("");
   const [responseCookie, setResponseCookie] = useState("");
-  const [responseStatus, setResponseStatus] = useState("");
+  const [responseStatus, setResponseStatus] = useState("null");
 
   useEffect(() => {
     setMethod("GET");
-    setUrl("http://localhost:PORT");
+    setUrl("http://localhost:3000");
     setHeaders(`{\n"Access-Control-Allow-Origin":"*",\n"Content-Type":"application/json"\n}`);
     setBody("{\n\n}");
   }, []);
@@ -58,8 +61,12 @@ const App = () => {
 
       setResponseHeaders(JSON.stringify(res.headers));
       setResponseStatus(res.status);
+      toast.success(`🧪 successfully returned response status:${res.status}`);
     } catch (error) {
-      console.error(error); // add toest functionality
+      console.log(error); // add toest functionality
+      if(error.message.includes("Failed to parse URL")) toast.error("⚠️ wrong URL,enter correct URL");
+      if(error.message.includes("Unexpected token < in JSON at position 0")) toast.error("⚠️ wrong body request data, enter correct body");
+      if(error.message.includes("Unexpected string in JSON")) toast.error("⚠️ wrong headers sets, enter correct headers");  
     }
   };
   return (
@@ -97,6 +104,7 @@ const App = () => {
                 responseData={responseData}
                 responseCookie={responseCookie}
                 responseHeaders={responseHeaders}
+                responseStatus={responseStatus}
               />
             </div>
           </div>
