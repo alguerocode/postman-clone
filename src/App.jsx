@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import {toast} from 'react-toastify';
+import { toast } from "react-toastify";
 import {
   History,
   ResponseTable,
@@ -17,20 +17,22 @@ const App = () => {
   const [headers, setHeaders] = useState("");
   const [history, setHistory] = useState([]);
   const [responseData, setResponseData] = useState("");
-  const [responseHeaders, setResponseHeaders] = useState("");
+  const [responseHeaders, setResponseHeaders] = useState({});
   const [responseCookie, setResponseCookie] = useState("");
   const [responseStatus, setResponseStatus] = useState("null");
 
   useEffect(() => {
     setMethod("GET");
     setUrl("http://localhost:3000");
-    setHeaders(`{\n"Access-Control-Allow-Origin":"*",\n"Content-Type":"application/json"\n}`);
+    setHeaders(
+      `{\n"Access-Control-Allow-Origin":"*",\n"Content-Type":"application/json"\n}`
+    );
     setBody("{\n\n}");
   }, []);
 
   const clearResponseTable = () => {
     setResponseData("");
-    setResponseHeaders("");
+    setResponseHeaders({});
     setResponseCookie("");
   };
 
@@ -52,15 +54,18 @@ const App = () => {
         credentials: "include",
       });
       const data = await res.json();
-
+      
       // set the response table
 
-      setResponseHeaders("") // reset headers before updated
+ 
+      setResponseHeaders((headers) =>{
+        headers = {}; // reset headers object values
+        for (const pair of res.headers.entries()) {
+          headers[pair[0]] = pair[1];
+        }
+        return headers;
+      });
 
-      for (const pair of res.headers.entries()) { 
-        console.log(pair[0]+ ': '+ pair[1]);
-        setResponseHeaders((headers) => headers +`${pair[0]} : ${pair[1]}\n\n\n`);
-      }
       if (data) setResponseData(JSON.stringify(data));
       if (document.cookie) setResponseCookie(document.cookie);
       setResponseStatus(res.status);
@@ -68,10 +73,13 @@ const App = () => {
       toast.success(`🧪 successfully returned response status:${res.status}`);
 
     } catch (error) {
-      console.log(error); // add toest functionality
-      if(error.message.includes("Failed to parse URL")) toast.error("⚠️ wrong URL,enter correct URL");
-      if(error.message.includes("Unexpected token < in JSON at position 0")) toast.error("⚠️ wrong body request data, enter correct body");
-      if(error.message.includes("Unexpected string in JSON")) toast.error("⚠️ wrong headers sets, enter correct headers");  
+      console.log(error); // add toest functionality (catch errors)
+      if (error.message.includes("Failed to parse URL"))
+        toast.error("⚠️ wrong URL,enter correct URL");
+      if (error.message.includes("Unexpected token < in JSON at position 0"))
+        toast.error("⚠️ wrong body request data, enter correct body");
+      if (error.message.includes("Unexpected string in JSON"))
+        toast.error("⚠️ wrong headers sets, enter correct headers");
     }
   };
   return (

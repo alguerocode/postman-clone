@@ -106,7 +106,7 @@ const ResponseTable = ({
                 height: "246px",
               }}
             >
-              {responseHeaders}
+              <JSONPretty data={JSON.stringify(responseHeaders)} mainStyle="background:#f8f9fa" />  
             </div>
           </div>
           <div
