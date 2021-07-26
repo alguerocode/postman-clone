@@ -16,7 +16,7 @@ const App = () => {
   const [responseData, setResponseData] = useState("");
   const [responseHeaders, setResponseHeaders] = useState("");
   const [responseCookie, setResponseCookie] = useState("");
-  const [responseStatus, setResponseStatus] = useState("");
+  const [responseStatus, setResponseStatus] = useState("null");
 
   useEffect(() => {
     setMethod("GET");
@@ -97,6 +97,7 @@ const App = () => {
                 responseData={responseData}
                 responseCookie={responseCookie}
                 responseHeaders={responseHeaders}
+                responseStatus={responseStatus}
               />
             </div>
           </div>
