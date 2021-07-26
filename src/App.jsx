@@ -61,7 +61,7 @@ const App = () => {
 
       setResponseHeaders(JSON.stringify(res.headers));
       setResponseStatus(res.status);
-      toast.success(`🧪 successfully return response status:${res.status}`);
+      toast.success(`🧪 successfully returned response status:${res.status}`);
     } catch (error) {
       console.log(error); // add toest functionality
       if(error.message.includes("Failed to parse URL")) toast.error("⚠️ wrong URL,enter correct URL");
