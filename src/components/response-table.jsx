@@ -1,5 +1,5 @@
 import React from "react";
-import JSONPretty from 'react-json-pretty';
+
 
 
 const ResponseTable = ({responseCookie, responseHeaders, responseData}) => {
@@ -30,15 +30,15 @@ const ResponseTable = ({responseCookie, responseHeaders, responseData}) => {
            id="pills-data"
            role="tabpanel"
            aria-labelledby="pills-data-tab">
-         <div className="data-content bg-light border border-1 rounded" style={{
+         <div className="data-content bg-light border border-1 rounded p-3" style={{
             width:"523px",
             height:"246px"
           }}>
-              <JSONPretty id="json-pretty" data={responseData} style={{backgroundColor:"white"}}/>
+            {responseData}
          </div>
          </div>
          <div className="tab-pane fade" id="pills-resheaders" role="tabpanel" aria-labelledby="pills-resheaders-tab">
-          <div className="resheader-content bg-light border border-1 rounded" style={{
+          <div className="resheader-content bg-light border border-1 rounded p-3" style={{
             width:"523px",
             height:"246px"
           }}>
@@ -46,7 +46,7 @@ const ResponseTable = ({responseCookie, responseHeaders, responseData}) => {
           </div>
          </div>
          <div className="tab-pane fade" id="pills-cookie" role="tabpanel" aria-labelledby="pills-cookie-tab">
-          <div className="cookie-content bg-light border border-1 rounded" style={{
+          <div className="cookie-content bg-light border border-1 rounded p-3" style={{
             width:"523px",
             height:"246px"
           }}>

@@ -1,5 +1,6 @@
 import React from "react";
 
+
 const RequestTable = ({ sendHandler, body, setBody, headers, setHeaders }) => {
   return (
     <React.Fragment>
@@ -32,14 +33,13 @@ const RequestTable = ({ sendHandler, body, setBody, headers, setHeaders }) => {
           >
             <textarea
               name="body"
-              className="bg-light border border-1 rounded"
+              className="bg-light border border-1 rounded p-3 json-pretty"
               id="body"
               value={body}
               cols="70"
               rows="10"
               onChange={(e) => setBody(e.target.value)}
             >
-              {body}
             </textarea>
           </div>
           <div
@@ -50,7 +50,7 @@ const RequestTable = ({ sendHandler, body, setBody, headers, setHeaders }) => {
           >
             <textarea
               name="headers"
-              className="bg-light border border-1 rounded"
+              className="bg-light border border-1 rounded p-3"
               value={headers}
               id="headers"
               cols="70"
