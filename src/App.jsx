@@ -54,14 +54,19 @@ const App = () => {
       const data = await res.json();
 
       // set the response table
-      console.log(data);
 
+      setResponseHeaders("") // reset headers before updated
+
+      for (const pair of res.headers.entries()) { 
+        console.log(pair[0]+ ': '+ pair[1]);
+        setResponseHeaders((headers) => headers +`${pair[0]} : ${pair[1]}\n\n\n`);
+      }
       if (data) setResponseData(JSON.stringify(data));
       if (document.cookie) setResponseCookie(document.cookie);
-
-      setResponseHeaders(JSON.stringify(res.headers));
       setResponseStatus(res.status);
+
       toast.success(`🧪 successfully returned response status:${res.status}`);
+
     } catch (error) {
       console.log(error); // add toest functionality
       if(error.message.includes("Failed to parse URL")) toast.error("⚠️ wrong URL,enter correct URL");
