@@ -4,14 +4,13 @@ const cors = require("cors");
 const app = express();
 
 // middlewares
-app.use(cors({
-  credentials:true,
-  origin:"http://localhost:5000"
-}));
+
+app.use(cors({credentials: true,origin:"http://localhost:5000"}));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 // lestening
+
 const PORT = 3000;
 app.listen(PORT, (err) => {
   if (err) throw err;
@@ -38,8 +37,9 @@ app.delete("/", (req, res) => {
 
 app.put("/", (req, res) => {
   console.log(req.body);
-  res.cookie("test","application",{
-    domain:"http://localhost:5000",
+  res.header("Access-Control-Allow-Credentials", true);
+  res.cookie("test", "application", {
+    httpOnly: false,
   });
   res.setHeader("Content-Type", "application/json");
   res.status(200).send({ message: "your welcome" });
