@@ -9,7 +9,7 @@
 
 - React
 - Bootstrap
- 
+- nodejs(for test)
 
 ## Run Locally (installation)
 
